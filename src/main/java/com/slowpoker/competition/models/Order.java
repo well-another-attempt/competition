@@ -1,5 +1,7 @@
 package com.slowpoker.competition.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -29,6 +31,7 @@ public class Order {
     private Company company;
 
     @ManyToMany
+    @JsonManagedReference
     @JoinTable(name="Order_Food", joinColumns = {@JoinColumn(name="order_id")}, inverseJoinColumns = {@JoinColumn(name = "food_id")})
     private Set<Food> foods;
 
@@ -91,6 +94,22 @@ public class Order {
 
     public void setClientName(String clientName) {
         this.clientName = clientName;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Set<Food> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(Set<Food> foods) {
+        this.foods = foods;
     }
 }
 

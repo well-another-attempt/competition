@@ -1,5 +1,7 @@
 package com.slowpoker.competition.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -29,6 +31,7 @@ public class Food {
     private MenuCategory menuCategory;
 
     @ManyToMany(mappedBy = "foods")
+    @JsonBackReference
     private Set<Order> orders;
 
     public Food() {
