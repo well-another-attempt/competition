@@ -25,6 +25,10 @@ public class OrderController {
         return orderRepository.findById(id).orElseThrow(() -> new ResourceNotFound("the order does not exist"));
     }
 
+    @GetMapping("orders")
+    public Iterable<Order> getAll() {
+        return orderRepository.findAll();
+    }
 
     @PostMapping("orders")
     public Order storeOrder(@RequestBody  String body) {
