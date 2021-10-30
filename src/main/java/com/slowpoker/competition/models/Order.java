@@ -24,16 +24,25 @@ public class Order {
     @Column(name="client_name")
     private String clientName;
 
-    @OneToOne(cascade = { CascadeType.ALL })
-    @JoinColumn(name="institution_id", referencedColumnName = "id")
-    private Institution institution;
+    @OneToOne
+    @JoinColumn(name="company_id", referencedColumnName = "id")
+    private Company company;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany
     @JoinTable(name="Order_Food", joinColumns = {@JoinColumn(name="order_id")}, inverseJoinColumns = {@JoinColumn(name = "food_id")})
     private Set<Food> foods;
 
 
     public Order() {
+    }
+
+    public Order(String orderNumber, Integer orderSum, String clientPhoneNumber, String clientName, Company company, Set<Food> foods) {
+        this.orderNumber = orderNumber;
+        this.orderSum = orderSum;
+        this.clientPhoneNumber = clientPhoneNumber;
+        this.clientName = clientName;
+        this.company = company;
+        this.foods = foods;
     }
 
     public Order(Long id, String orderNumber, Integer orderSum, String clientPhoneNumber, String clientName) {

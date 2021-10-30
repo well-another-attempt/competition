@@ -14,22 +14,17 @@ public class MenuCategory {
     @Column(name="name", nullable = false)
     private String name;
 
-    @OneToOne(cascade = { CascadeType.ALL })
-    @JoinColumn(name = "institution_id", referencedColumnName = "id")
-    private Institution institution;
+    @OneToOne
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
+    private Company company;
 
     public MenuCategory() {
     }
 
-    public MenuCategory(Long id, String name, Institution institution) {
-        this.id = id;
-        this.name = name;
-        this.institution = institution;
-    }
 
-    public MenuCategory(String name, Institution institution) {
+    public MenuCategory(String name, Company company) {
         this.name = name;
-        this.institution = institution;
+        this.company = company;
     }
 
     public Long getId() {
@@ -48,12 +43,12 @@ public class MenuCategory {
         this.name = name;
     }
 
-    public Institution getInstitution() {
-        return institution;
+    public Company getInstitution() {
+        return company;
     }
 
-    public void setInstitution(Institution institution) {
-        this.institution = institution;
+    public void setInstitution(Company company) {
+        this.company = company;
     }
 
     @Override
@@ -61,7 +56,7 @@ public class MenuCategory {
         return "MenuCategory{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", institution=" + institution +
+                ", company=" + company +
                 '}';
     }
 }

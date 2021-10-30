@@ -1,11 +1,10 @@
 package com.slowpoker.competition.models;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
-@Table(name = "Institution")
-public class Institution {
+@Table(name = "Company")
+public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,20 +17,23 @@ public class Institution {
     @Column(name="description", nullable = false)
     private String description;
 
-    @OneToOne(mappedBy = "institution")
+    @OneToOne(mappedBy = "company")
     private Order order;
 
-    public Institution() {
+    public Company() {
 
     }
 
-    public Institution(String name, String description, Order order) {
+    public Company(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    public Company(String name, String description, Order order) {
         this.name = name;
         this.description = description;
         this.order = order;
     }
-
-
 
     public Long getId() {
         return id;
@@ -59,7 +61,7 @@ public class Institution {
 
     @Override
     public String toString() {
-        return "Institution{" +
+        return "Company{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

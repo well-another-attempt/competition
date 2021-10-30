@@ -24,7 +24,7 @@ public class Food {
     @Column(name="price", nullable = false)
     private Integer price;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name="menu_category_id", referencedColumnName = "id")
     private MenuCategory menuCategory;
 
@@ -35,13 +35,12 @@ public class Food {
 
     }
 
-    public Food(String name, String imageUrl, String description, Integer price, MenuCategory menuCategory, Set<Order> orders) {
+    public Food(String name, String imageUrl, String description, Integer price, MenuCategory menuCategory) {
         this.name = name;
         this.imageUrl = imageUrl;
         this.description = description;
         this.price = price;
         this.menuCategory = menuCategory;
-        this.orders = orders;
     }
 
     public Food(Long id, String name, String imageUrl, String description, Integer price, MenuCategory menuCategory, Set<Order> orders) {
