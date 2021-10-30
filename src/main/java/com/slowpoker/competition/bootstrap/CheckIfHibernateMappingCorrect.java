@@ -12,17 +12,13 @@ import org.springframework.stereotype.Component;
 public class CheckIfHibernateMappingCorrect implements CommandLineRunner {
 
     private InstitutionRepository institutionRepository;
-//    private MenuCategoryRepository menuCategoryRepository;
 
     public CheckIfHibernateMappingCorrect(InstitutionRepository institutionRepository) {
         this.institutionRepository = institutionRepository;
-//        this.menuCategoryRepository = menuCategoryRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        Institution inst1 = new Institution("first institution", "hello, world");
-        institutionRepository.save(inst1);
-        institutionRepository.findAll().forEach(System.out::println);
+
     }
 }

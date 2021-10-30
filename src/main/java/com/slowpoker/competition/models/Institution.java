@@ -18,14 +18,20 @@ public class Institution {
     @Column(name="description", nullable = false)
     private String description;
 
+    @OneToOne(mappedBy = "institution")
+    private Order order;
+
     public Institution() {
 
     }
 
-    public Institution(String name, String description) {
+    public Institution(String name, String description, Order order) {
         this.name = name;
         this.description = description;
+        this.order = order;
     }
+
+
 
     public Long getId() {
         return id;

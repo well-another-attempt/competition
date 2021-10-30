@@ -15,8 +15,8 @@ public class Order {
     @Column(name="order_number", nullable = false, unique = true)
     private String orderNumber;
 
-    @Column(name="sum", nullable = false)
-    private Integer sum;
+    @Column(name="order_sum", nullable = false)
+    private Integer orderSum;
 
     @Column(name="client_phone_number")
     private String clientPhoneNumber;
@@ -29,43 +29,19 @@ public class Order {
     private Institution institution;
 
     @ManyToMany(cascade = { CascadeType.ALL })
-//    @Size(min=1)
     @JoinTable(name="Order_Food", joinColumns = {@JoinColumn(name="order_id")}, inverseJoinColumns = {@JoinColumn(name = "food_id")})
     private Set<Food> foods;
+
 
     public Order() {
     }
 
-    public Order(String orderNumber, Integer sum, String clientPhoneNumber, String clientName, Institution institution, Set<Food> foods) {
-        this.orderNumber = orderNumber;
-        this.sum = sum;
-        this.clientPhoneNumber = clientPhoneNumber;
-        this.clientName = clientName;
-        this.institution = institution;
-        this.foods = foods;
-    }
-
-    public Order(Long id, String orderNumber, Integer sum, String clientPhoneNumber, String clientName, Institution institution, Set<Food> foods) {
+    public Order(Long id, String orderNumber, Integer orderSum, String clientPhoneNumber, String clientName) {
         this.id = id;
         this.orderNumber = orderNumber;
-        this.sum = sum;
+        this.orderSum = orderSum;
         this.clientPhoneNumber = clientPhoneNumber;
         this.clientName = clientName;
-        this.institution = institution;
-        this.foods = foods;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", orderNumber='" + orderNumber + '\'' +
-                ", sum=" + sum +
-                ", clientPhoneNumber='" + clientPhoneNumber + '\'' +
-                ", clientName='" + clientName + '\'' +
-                ", institution=" + institution +
-                ", foods=" + foods +
-                '}';
     }
 
     public Long getId() {
@@ -84,12 +60,12 @@ public class Order {
         this.orderNumber = orderNumber;
     }
 
-    public Integer getSum() {
-        return sum;
+    public Integer getOrderSum() {
+        return orderSum;
     }
 
-    public void setSum(Integer sum) {
-        this.sum = sum;
+    public void setOrderSum(Integer orderSum) {
+        this.orderSum = orderSum;
     }
 
     public String getClientPhoneNumber() {
@@ -106,22 +82,6 @@ public class Order {
 
     public void setClientName(String clientName) {
         this.clientName = clientName;
-    }
-
-    public Institution getInstitution() {
-        return institution;
-    }
-
-    public void setInstitution(Institution institution) {
-        this.institution = institution;
-    }
-
-    public Set<Food> getFoods() {
-        return foods;
-    }
-
-    public void setFoods(Set<Food> foods) {
-        this.foods = foods;
     }
 }
 
